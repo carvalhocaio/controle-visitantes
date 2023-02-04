@@ -2,4 +2,5 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, "index.html")
+    context = {"nome_pagina": "Início da Dashboard"}
+    return render(request, "index.html", context)
