@@ -10,7 +10,9 @@ def registrar_visitante(request):
         form = VisitanteForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            visitante = form.save(commit=False)
+            visitante.registrado_por = request.user.porteiro
+            visitante.save()
 
     context = {
         "nome_pagina": "Registrar visitante",
