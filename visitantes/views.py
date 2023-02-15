@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from visitantes.models import Visitante
 from visitantes.forms import VisitanteForm, AutorizaVisitanteForm
 
@@ -36,7 +37,10 @@ def informacoes_visitante(request, id):
         form = AutorizaVisitanteForm(request.POST, instance=visitante)
 
         if form.is_valid():
-            form.save()
+            visitante = form.save(commit=False)
+            visitante.status = "EM VISITA"
+            visitante.horario_autorizacao = timezone.now()
+            visitante.save()
 
             messages.success(request, "Entrada de visitante autorizada com sucesso")
 
