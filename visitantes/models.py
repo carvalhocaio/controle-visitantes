@@ -10,7 +10,7 @@ class Visitante(models.Model):
     ]
 
     status = models.CharField(
-        verbose_name="Stats",
+        verbose_name="Status",
         max_length=10,
         choices=STATUS_VISITANTE,
         default="AGUARDANDO",
