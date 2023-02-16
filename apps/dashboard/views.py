@@ -5,7 +5,7 @@ from visitantes.models import Visitante
 
 def index(request):
 
-    todos_visitantes = Visitante.objects.all()
+    todos_visitantes = Visitante.objects.order_by("-horario_chegada")
     visitantes_aguardando = todos_visitantes.filter(status="AGUARDANDO")
     visitantes_em_visita = todos_visitantes.filter(status="EM_VISITA")
     visitantes_finalizado = todos_visitantes.filter(status="FINALIZADO")
