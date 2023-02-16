@@ -12,8 +12,8 @@ def index(request):
     context = {
         "nome_pagina": "Início da Dashboard",
         "todos_visitantes": todos_visitantes,
-        "visitantes_aguardando": visitantes_aguardando,
-        "visitantes_em_visita": visitantes_em_visita,
-        "visitantes_finalizados": visitantes_finalizado,
+        "visitantes_aguardando": visitantes_aguardando.count(),
+        "visitantes_em_visita": visitantes_em_visita.count(),
+        "visitantes_finalizados": visitantes_finalizado.count(),
     }
     return render(request, "index.html", context)
