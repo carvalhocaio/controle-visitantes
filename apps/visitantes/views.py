@@ -1,11 +1,13 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotAllowed
 from visitantes.models import Visitante
 from visitantes.forms import VisitanteForm, AutorizaVisitanteForm
 
 
+@login_required
 def registrar_visitante(request):
 
     form = VisitanteForm()
@@ -29,6 +31,7 @@ def registrar_visitante(request):
     return render(request, "registrar_visitante.html", context)
 
 
+@login_required
 def informacoes_visitante(request, id):
 
     visitante = get_object_or_404(Visitante, id=id)
